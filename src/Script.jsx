@@ -19,21 +19,21 @@ function Script() {
 
       <Switch>
 
-        <Route path="/">
+        <Route exact path="/">
 
           <Home/>
 
         </Route>
 
 
-        <Route path="/post">
+        <Route exact path="/post">
 
           <NewPost/>
 
         </Route>
 
 
-        <Route path="/post/:id">
+        <Route exact path="/post/:id">
 
           <PostPage/>
 
