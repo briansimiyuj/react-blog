@@ -19,15 +19,31 @@ function Script() {
 
       <Switch>
 
-        <Home />
+        <Route path="/">
 
-        <NewPost/>
+          <Home/>
 
-        <PostPage/>
+        </Route>
 
-        <About/>
 
-        <Missing/>
+        <Route path="/post">
+
+          <NewPost/>
+
+        </Route>
+
+
+        <Route path="/post/:id">
+
+          <PostPage/>
+
+        </Route>
+
+
+        <Route path="/about" component={About}/>
+
+        
+        <Route path="*" component={Missing}/>
 
       </Switch>
 
