@@ -17,17 +17,23 @@ function Script() {
 
       <Nav/>
 
-      <Home/>
+      <Switch>
 
-      <NewPost/>
+        <Home />
 
-      <PostPage/>
+        <NewPost/>
 
-      <About/>
+        <PostPage/>
 
-      <Missing/>
+        <About/>
+
+        <Missing/>
+
+      </Switch>
 
       <Footer/>
+
+      
 
     </div>
   )
