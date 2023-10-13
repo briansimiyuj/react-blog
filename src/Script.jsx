@@ -13,7 +13,21 @@ function Script() {
   return (
     <div className="script">
       
-      
+      <Header/>
+
+      <Nav/>
+
+      <Home/>
+
+      <NewPost/>
+
+      <PostPage/>
+
+      <About/>
+
+      <Missing/>
+
+      <Footer/>
 
     </div>
   )
