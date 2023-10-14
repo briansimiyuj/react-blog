@@ -58,7 +58,7 @@ function Script() {
 
         <Route exact path="/">
 
-          <Home/>
+          <Home posts={posts}/>
 
         </Route>
 
