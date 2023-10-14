@@ -1,3 +1,5 @@
+import Feed from './Feed'
+
 const Home = ({ posts }) =>{
 
     return(
