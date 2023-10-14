@@ -52,7 +52,7 @@ function Script() {
       
       <Header title="React JS Blog"/>
 
-      <Nav search={search} setSearch={setResults}/>
+      <Nav search={search} setSearch={setSearch}/>
 
       <Switch>
 
