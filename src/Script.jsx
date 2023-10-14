@@ -13,7 +13,7 @@ function Script() {
   return (
     <div className="script">
       
-      <Header/>
+      <Header title="React JS Blog"/>
 
       <Nav/>
 
