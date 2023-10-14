@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-const Post = ({ key, post }) =>{
+const Post = ({ post }) =>{
 
     return(
 
