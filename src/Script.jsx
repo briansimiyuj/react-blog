@@ -15,6 +15,10 @@ function Script() {
 
         [results, setResults] = useState([]),
 
+        [postTitle, setPostTitle] = useState(''),
+
+        [postBody, setPostBody] = useState(''),
+
         history = useHistory(),
 
         [posts, setPosts] = useState([
@@ -61,6 +65,13 @@ function Script() {
   }
 
 
+  const handleSubmit = () =>{
+  
+     
+  
+  }
+
+
   return (
     <div className="script">
       
@@ -79,7 +90,13 @@ function Script() {
 
         <Route exact path="/post">
 
-          <NewPost/>
+          <NewPost
+            handleSubmit={handleSubmit}
+            postTitle={postTitle}
+            setPostTitle={setPostTitle}
+            postBody={postBody}
+            setPostBody={setPostBody}
+          />
 
         </Route>
 
