@@ -15,6 +15,8 @@ function Script() {
 
         [results, setResults] = useState([]),
 
+        history = useHistory(),
+
         [posts, setPosts] = useState([
 
           {
@@ -47,6 +49,18 @@ function Script() {
 
         ])
 
+
+  const handleDelete = (id) =>{
+  
+     const postList = posts.filter(post => post.id !== id)
+
+     setPosts(postList)
+
+     history.push('/')
+  
+  }
+
+
   return (
     <div className="script">
       
@@ -72,7 +86,7 @@ function Script() {
 
         <Route exact path="/post/:id">
 
-          <PostPage posts={posts}/>
+          <PostPage posts={posts} handleDelete={handleDelete}/>
 
         </Route>
 
