@@ -72,7 +72,7 @@ function Script() {
 
         <Route exact path="/post/:id">
 
-          <PostPage/>
+          <PostPage posts={posts}/>
 
         </Route>
 
