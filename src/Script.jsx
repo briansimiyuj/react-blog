@@ -55,6 +55,21 @@ function Script() {
         ])
 
 
+    useEffect(() =>{
+    
+      const filteredResults = posts.filter(post => 
+        
+        ((post.body).toLowerCase()).includes(search.toLowerCase())
+
+        ||  ((post.title).toLowerCase()).includes(search.toLowerCase())
+        
+      )
+
+      setResults(filteredResults.reverse())
+    
+    }, [posts, search])
+
+
   const handleDelete = (id) =>{
   
      const postList = posts.filter(post => post.id !== id)
@@ -101,7 +116,7 @@ function Script() {
 
         <Route exact path="/">
 
-          <Home posts={posts}/>
+          <Home posts={results}/>
 
         </Route>
 
