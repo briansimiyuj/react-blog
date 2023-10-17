@@ -9,6 +9,7 @@ import Missing from './Missing'
 import { Route, Switch, useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import { format } from 'date-fns';
+import API from './api/posts';
 
 function Script() {
 
@@ -20,9 +21,45 @@ function Script() {
 
         [postBody, setPostBody] = useState(''),
 
-        history = useHistory(),
+        [posts, setPosts] = useState([]),
 
-        [posts, setPosts] = useState()
+        history = useHistory()
+
+
+    useEffect(() =>{
+    
+      const fetchPost = async() =>{
+      
+        try{
+
+          const response = await API.get('/posts')
+
+          setPosts(response.data)
+          
+        }catch(error){
+
+          if(error.response){
+
+            console.log(error.response.data)
+
+            console.log(error.response.status)
+
+            console.log(error.response.headers)
+
+          }else{
+
+            console.log(`Error: ${error.message}`)
+            
+          }
+          
+        }
+      
+      }
+
+
+      fetchPost()
+    
+    }, [])
 
 
     useEffect(() =>{
