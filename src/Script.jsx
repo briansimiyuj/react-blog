@@ -6,6 +6,7 @@ import NewPost from './NewPost'
 import PostPage from './PostPage'
 import About from './About'
 import Missing from './Missing'
+import EditPost from './EditPost'
 import { Route, Switch, useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import { format } from 'date-fns';
@@ -184,6 +185,20 @@ function Script() {
             setPostTitle={setPostTitle}
             postBody={postBody}
             setPostBody={setPostBody}
+          />
+
+        </Route>
+        
+        
+        <Route path="/edit/:id">
+
+          <EditPost
+            posts={posts}
+            handleEdit={handleEdit}
+            editTitle={editTitle}
+            setEditTitle={setEditTitle}
+            editBody={editBody}
+            setEditBody={setEditBody}
           />
 
         </Route>
