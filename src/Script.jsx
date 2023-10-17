@@ -77,13 +77,23 @@ function Script() {
     }, [posts, search])
 
 
-  const handleDelete = (id) =>{
+  const handleDelete = async (id) =>{
   
-     const postList = posts.filter(post => post.id !== id)
+      try{
 
-     setPosts(postList)
+        await API.delete(`/posts/${id}`)
 
-     history.push('/')
+        const postList = posts.filter(post => post.id !== id)
+
+        setPosts(postList)
+
+        history.push('/')
+
+      }catch(err){
+
+        console.log(`Error: ${err.message}`)
+
+      }
   
   }
 
