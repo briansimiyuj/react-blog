@@ -88,7 +88,7 @@ function Script() {
   }
 
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = async (e) =>{
   
      e.preventDefault()
 
@@ -96,18 +96,23 @@ function Script() {
 
           datetime = format(new Date(), 'MMM dd, yyyy pp'),
 
-          newPost = { id, title: postTitle, body: postBody, datetime },
+          newPost = { id, title: postTitle, body: postBody, datetime }
 
-          allPosts = [...posts, newPost]
+      try{
 
+        const response = await API.post('/posts', newPost),
+
+             allPosts = [...posts, response.data]
       
-      setPosts(allPosts)
+        setPosts(allPosts)
 
-      setPostTitle('')
+        setPostTitle('')
 
-      setPostBody('')
+        setPostBody('')
 
-      history.push('/')
+        history.push('/')
+
+      }catch(err){}
   
   }
 
