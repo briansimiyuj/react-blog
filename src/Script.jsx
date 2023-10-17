@@ -23,9 +23,9 @@ function Script() {
 
         [postBody, setPostBody] = useState(''),
 
-        [editTitle, setEditTitle] = useState('')
+        [editTitle, setEditTitle] = useState(''),
 
-        [editBody, setEditBody] = useState('')
+        [editBody, setEditBody] = useState(''),
 
         [posts, setPosts] = useState([]),
 

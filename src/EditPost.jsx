@@ -63,7 +63,20 @@ const EditPost = ({ posts, handleEdit, editBody, setEditBody, editTitle, setEdit
                     
                     </>
                     
-            }
+            }{
+
+                !editTitle &&
+  
+                <>
+                  <h2>Post Not Found</h2>
+  
+                  <p>Well, that's disappointing.</p>
+  
+                  <p><Link to='/'>Visit Our Homepage</Link></p>
+                  
+                </>
+  
+              }
 
            
 
