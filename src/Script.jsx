@@ -10,6 +10,7 @@ import { Route, Switch, useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import API from './api/posts';
+import posts from './api/posts'
 
 function Script() {
 
@@ -20,6 +21,10 @@ function Script() {
         [postTitle, setPostTitle] = useState(''),
 
         [postBody, setPostBody] = useState(''),
+
+        [editTitle, setEditTitle] = useState('')
+
+        [editBody, setEditBody] = useState('')
 
         [posts, setPosts] = useState([]),
 
@@ -75,6 +80,34 @@ function Script() {
       setResults(filteredResults.reverse())
     
     }, [posts, search])
+
+
+    const handleEdit = async (id) =>{
+    
+      const datetime = format(new Date(), 'MMM dd, yyyy pp'),
+
+            updatedPost = { id, title: editTitle, body: editBody, datetime }
+
+
+      try{
+
+        const response = await API.put(`/posts/${id}`, updatedPost)
+
+        setPosts(posts.map(post => post.id === id ? { ...response.data } : post))
+
+        setEditTitle('')
+
+        setEditBody('')
+
+        history.push('/')
+
+      }catch(err){
+
+        console.log(`Error: ${err.message}`)
+
+      }
+    
+    }
 
 
   const handleDelete = async (id) =>{
