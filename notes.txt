@@ -1,0 +1,3 @@
+To install axios as dependency, use the following command:
+
+    `npm i axios`
