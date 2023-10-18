@@ -11,7 +11,7 @@ import { Route, Switch, useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import API from './api/posts';
-import posts from './api/posts'
+import useWindowSize from './hooks/useWindowSize';
 
 function Script() {
 
@@ -28,6 +28,8 @@ function Script() {
         [editBody, setEditBody] = useState(''),
 
         [posts, setPosts] = useState([]),
+
+        { width } = useWindowSize(),
 
         history = useHistory()
 
@@ -164,7 +166,7 @@ function Script() {
   return (
     <div className="script">
       
-      <Header title="React JS Blog"/>
+      <Header title="React JS Blog" width={width}/>
 
       <Nav search={search} setSearch={setSearch}/>
 
