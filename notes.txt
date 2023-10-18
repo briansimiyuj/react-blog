@@ -1,1 +1,1 @@
-In this case, we have updated our posts database using axios package. Instead of pushing newPost to allPosts array, we push response data (Script.jsx ln 105)
+The return function in useWindowSize component ln 34 is a clean up function that removes event listener from the window object
