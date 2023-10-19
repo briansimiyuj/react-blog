@@ -19,7 +19,7 @@ function Script() {
 
       <DataProvider>
 
-        <Nav search={search} setSearch={setSearch}/>
+        <Nav/>
 
         <Switch>
 
