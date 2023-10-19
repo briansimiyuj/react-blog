@@ -51,11 +51,7 @@ const useAxiosFetch = (dataURL) =>{
 
             }finally{
 
-                isMounted && setTimeout(() => {
-                    
-                    setIsLoading(false)
-
-                }, 2000)
+                setIsLoading(false)
 
             }
        
@@ -66,8 +62,6 @@ const useAxiosFetch = (dataURL) =>{
         
         
         const cleanUp = () =>{
-        
-           console.log('Cleaning up')
 
            isMounted = false
 

@@ -12,6 +12,7 @@ import { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import API from './api/posts';
 import useWindowSize from './hooks/useWindowSize';
+import useAxiosFetch from './hooks/useAxiosFetch';
 
 function Script() {
 
@@ -31,43 +32,17 @@ function Script() {
 
         { width } = useWindowSize(),
 
+        { data, fetchError, isLoading } = useAxiosFetch('http://localhost:8000/posts'),
+
         history = useHistory()
 
 
     useEffect(() =>{
     
-      const fetchPost = async() =>{
-      
-        try{
-
-          const response = await API.get('/posts')
-
-          setPosts(response.data)
-          
-        }catch(error){
-
-          if(error.response){
-
-            console.log(error.response.data)
-
-            console.log(error.response.status)
-
-            console.log(error.response.headers)
-
-          }else{
-
-            console.log(`Error: ${error.message}`)
-            
-          }
-          
-        }
-      
-      }
-
-
-      fetchPost()
+       setPosts(data)
+     
+    }, [data]) 
     
-    }, [])
 
 
     useEffect(() =>{
@@ -174,7 +149,11 @@ function Script() {
 
         <Route exact path="/">
 
-          <Home posts={results}/>
+          <Home 
+            posts={results}
+            fetchError={fetchError}
+            isLoading={isLoading}
+          />
 
         </Route>
 
