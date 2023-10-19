@@ -1,24 +1,27 @@
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import DataContext from './context/DataContext'
 
-const EditPost = ({ posts, handleEdit, editBody, setEditBody, editTitle, setEditTitle }) =>{
+const EditPost = () =>{
+
+    const { results, handleEdit, editBody, setEditBody, editTitle, setEditTitle } = useContext(DataContext)
 
     const { id } = useParams(),
 
-          post = posts.find(post => (post.id).toString() === id)
+          result = results.find(result => (result.id).toString() === id)
 
 
     useEffect(() =>{
     
-       if(post){
+       if(result){
 
-            setEditTitle(post.title)
+            setEditTitle(result.title)
 
-            setEditBody(post.body)
+            setEditBody(result.body)
 
        }
     
-    }, [post, setEditBody, setEditTitle])
+    }, [result, setEditBody, setEditTitle])
 
 
 
@@ -57,7 +60,7 @@ const EditPost = ({ posts, handleEdit, editBody, setEditBody, editTitle, setEdit
                                 onChange={e => setEditBody(e.target.value)}
                             />
 
-                            <button type="submit" onClick={() => handleEdit(post.id)}>Submit</button>
+                            <button type="submit" onClick={() => handleEdit(result.id)}>Submit</button>
 
                         </form>
                     
