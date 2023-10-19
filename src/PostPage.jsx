@@ -1,10 +1,14 @@
 import { useParams, Link } from 'react-router-dom'
+import { useContext } from 'react'
+import DataContext from './context/DataContext'
 
-const PostPage = ({ posts, handleDelete }) =>{
+const PostPage = () =>{
+
+  const { results, handleDelete } = useContext(DataContext)
 
   const { id } = useParams(),
 
-        post = posts.find(post => (post.id).toString() === id)
+        result = results.find(result => (result.id).toString() === id)
 
 
     return(
@@ -15,30 +19,30 @@ const PostPage = ({ posts, handleDelete }) =>{
 
             {
             
-              post &&
+              result &&
 
                 <>
                 
-                  <h2>{post.title}</h2>
+                  <h2>{result.title}</h2>
 
-                  <p className="postDate">{post.datetime}</p>
+                  <p className="postDate">{result.datetime}</p>
                   
-                  <p className="postBody">{post.body}</p>
+                  <p className="postBody">{result.body}</p>
 
-                  <Link to={`/edit/${post.id}`}>
+                  <Link to={`/edit/${result.id}`}>
 
                     <button className="editButton">Edit Post</button>
 
                   </Link>
 
                   
-                  <button className="deleteButton" onClick={() => handleDelete(post.id)}>Delete Post</button>
+                  <button className="deleteButton" onClick={() => handleDelete(result.id)}>Delete Post</button>
                 
                 </>
               
             }{
 
-              !post &&
+              !result &&
 
               <>
                 <h2>Post Not Found</h2>
