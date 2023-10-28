@@ -1,14 +1,38 @@
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useHistory } from 'react-router-dom'
 import { useContext } from 'react'
+import API from './api/posts';
 import DataContext from './context/DataContext'
 
 const PostPage = () =>{
 
-  const { results, handleDelete } = useContext(DataContext)
+  const { posts, setPosts } = useContext(DataContext),
 
-  const { id } = useParams(),
+        { id } = useParams(),
 
-        result = results.find(result => (result.id).toString() === id)
+        history = useHistory(), 
+
+        post = posts.find(post => (post.id).toString() === id)
+
+
+        const handleDelete = async (id) =>{
+    
+          try{
+    
+            await API.delete(`/posts/${id}`)
+    
+            const postList = posts.filter(post => post.id !== id)
+    
+            setPosts(postList)
+    
+            history.push('/')
+    
+          }catch(err){
+    
+            console.log(`Error: ${err.message}`)
+    
+          }
+      
+      }
 
 
     return(
@@ -19,30 +43,30 @@ const PostPage = () =>{
 
             {
             
-              result &&
+              post &&
 
                 <>
                 
-                  <h2>{result.title}</h2>
+                  <h2>{post.title}</h2>
 
-                  <p className="postDate">{result.datetime}</p>
+                  <p className="postDate">{post.datetime}</p>
                   
-                  <p className="postBody">{result.body}</p>
+                  <p className="postBody">{post.body}</p>
 
-                  <Link to={`/edit/${result.id}`}>
+                  <Link to={`/edit/${post.id}`}>
 
                     <button className="editButton">Edit Post</button>
 
                   </Link>
 
                   
-                  <button className="deleteButton" onClick={() => handleDelete(result.id)}>Delete Post</button>
+                  <button className="deleteButton" onClick={() => handleDelete(post.id)}>Delete Post</button>
                 
                 </>
               
             }{
 
-              !result &&
+              !post &&
 
               <>
                 <h2>Post Not Found</h2>

@@ -1,8 +1,4 @@
 import { createContext, useState, useEffect } from 'react'
-import {  useHistory } from 'react-router-dom'
-import { format } from 'date-fns';
-import API from '../api/posts';
-import useWindowSize from '../hooks/useWindowSize';
 import useAxiosFetch from '../hooks/useAxiosFetch';
 
 const DataContext = createContext({})
@@ -15,9 +11,8 @@ export const DataProvider = ({ children }) =>{
 
         [posts, setPosts] = useState([]),
 
-        { data, fetchError, isLoading } = useAxiosFetch('http://localhost:8000/posts'),
+        { data, fetchError, isLoading } = useAxiosFetch('http://localhost:8000/posts')
 
-        history = useHistory()
 
 
     useEffect(() =>{
@@ -40,30 +35,7 @@ export const DataProvider = ({ children }) =>{
 
       setResults(filteredResults.reverse())
     
-    }, [posts, search])
-
-  
-  
-    const handleDelete = async (id) =>{
-    
-        try{
-  
-          await API.delete(`/posts/${id}`)
-  
-          const postList = posts.filter(post => post.id !== id)
-  
-          setPosts(postList)
-  
-          history.push('/')
-  
-        }catch(err){
-  
-          console.log(`Error: ${err.message}`)
-  
-        }
-    
-    }
-  
+    }, [posts, search])  
   
 
     return(
