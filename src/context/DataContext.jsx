@@ -65,37 +65,6 @@ export const DataProvider = ({ children }) =>{
     }
   
   
-    const handleSubmit = async (e) =>{
-    
-       e.preventDefault()
-  
-       const id = posts.length ? posts[posts.length - 1].id + 1 : 1,
-  
-            datetime = format(new Date(), 'MMM dd, yyyy pp'),
-  
-            newPost = { id, title: postTitle, body: postBody, datetime }
-  
-        try{
-  
-          const response = await API.post('/posts', newPost),
-  
-               allPosts = [...posts, response.data]
-        
-          setPosts(allPosts)
-  
-          setPostTitle('')
-  
-          setPostBody('')
-  
-          history.push('/')
-  
-        }catch(err){
-
-          console.log(err)
-
-        }
-    
-    }
 
     return(
 
