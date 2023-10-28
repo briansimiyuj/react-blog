@@ -13,17 +13,7 @@ export const DataProvider = ({ children }) =>{
 
         [results, setResults] = useState([]),
 
-        [postTitle, setPostTitle] = useState(''),
-
-        [postBody, setPostBody] = useState(''),
-
-        [editTitle, setEditTitle] = useState(''),
-
-        [editBody, setEditBody] = useState(''),
-
         [posts, setPosts] = useState([]),
-
-        { width } = useWindowSize(),
 
         { data, fetchError, isLoading } = useAxiosFetch('http://localhost:8000/posts'),
 
@@ -52,33 +42,6 @@ export const DataProvider = ({ children }) =>{
     
     }, [posts, search])
 
-
-    const handleEdit = async (id) =>{
-    
-        const datetime = format(new Date(), 'MMM dd, yyyy pp'),
-  
-              updatedPost = { id, title: editTitle, body: editBody, datetime }
-  
-  
-        try{
-  
-          const response = await API.put(`/posts/${id}`, updatedPost)
-  
-          setPosts(posts.map(post => post.id === id ? { ...response.data } : post))
-  
-          setEditTitle('')
-  
-          setEditBody('')
-  
-          history.push('/')
-  
-        }catch(err){
-  
-          console.log(`Error: ${err.message}`)
-  
-        }
-      
-      }
   
   
     const handleDelete = async (id) =>{
@@ -137,7 +100,7 @@ export const DataProvider = ({ children }) =>{
     return(
 
         <DataContext.Provider value={{
-          width, search, setSearch, handleSubmit, postTitle, setPostTitle, postBody, setPostBody, results, handleEdit, editBody, setEditBody, editTitle, setEditTitle, fetchError, isLoading, handleDelete
+          search, setSearch, results, fetchError, isLoading, posts, setPosts
         }}>
 
             {children}
